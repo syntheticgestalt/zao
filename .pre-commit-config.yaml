@@ -1,0 +1,22 @@
+# Checks that run on every commit. Each clone enables them once:
+#   pip install pre-commit && pre-commit install
+# They can be bypassed with `git commit --no-verify`, so treat them as a
+# convenience, not a guarantee.
+repos:
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.16.10
+    hooks:
+      - id: ruff-check
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: local
+    hooks:
+      - id: pytest
+        name: pytest
+        # Everything except the end-to-end tests, which skip themselves unless
+        # $ZAO_WEIGHTS points at a local copy of the weights.
+        entry: pytest
+        language: system
+        pass_filenames: false
+        always_run: true

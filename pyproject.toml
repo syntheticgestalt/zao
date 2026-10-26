@@ -1,0 +1,90 @@
+[build-system]
+requires = ["setuptools>=77.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "zao"
+version = "0.1.0"
+description = "A molecular foundation model that reads each molecule as a set of conformers"
+readme = "README.md"
+requires-python = ">=3.10"
+license = "LicenseRef-SG-TVAR-1.0"
+license-files = ["LICENSE.md"]
+authors = [{ name = "SyntheticGestalt", email = "info@syntheticgestalt.com" }]
+keywords = ["cheminformatics", "molecular-representation", "conformers", "drug-discovery"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "Operating System :: POSIX :: Linux",
+    "Operating System :: MacOS",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Chemistry",
+]
+
+dependencies = [
+    "numpy>=1.24",
+    "rdkit>=2025.3",
+    "torch>=2.4",
+    # The fit silences the complaint about an all-NaN descriptor column, and the
+    # folds run in processes of their own, so the version has to be one that
+    # carries the filters into them: 1.7 for the filters as a process-wide list,
+    # 1.8 for the per-context filters Python 3.14 keeps instead.
+    "scikit-learn>=1.7; python_version < '3.14'",
+    "scikit-learn>=1.8; python_version >= '3.14'",
+    "joblib>=1.3",
+    "safetensors>=0.4",
+    "huggingface_hub>=0.20",
+    "egnn-pytorch>=0.2.8",
+    "einops>=0.6",
+    "tqdm>=4.60",
+    # The ready-made ZAORegressor and ZAOClassifier: the two learners they
+    # combine, and the search that tunes each one's settings on your data.
+    "lightgbm>=4.0",
+    "optuna>=4.0",
+    "optuna-integration[sklearn]>=4.0",
+    # Mordred's 1,613 2D descriptors, through the maintained community fork;
+    # the original mordred package has not been released since 2019.
+    "mordredcommunity>=2.0",
+]
+
+[project.urls]
+Homepage = "https://github.com/syntheticgestalt/zao"
+Source = "https://github.com/syntheticgestalt/zao"
+Issues = "https://github.com/syntheticgestalt/zao/issues"
+Weights = "https://huggingface.co/syntheticgestalt/zao"
+
+[project.scripts]
+zao = "zao.cli:main"
+
+[project.optional-dependencies]
+# nvMolKit generates conformers on the GPU, which is how ZAO's pretraining
+# corpus was built and the only backend fast enough for large libraries. Without
+# it the CPU backend runs instead. Linux x86_64 and Python 3.11 or newer.
+gpu = [
+    "nvmolkit>=0.6; sys_platform == 'linux' and platform_machine == 'x86_64' and python_version >= '3.11'"
+]
+test = ["pytest", "pandas"]
+dev = ["zao[test]", "ruff==0.16.10"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+zao = ["py.typed"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+src = ["src", "tests", "examples"]
+
+[tool.ruff.lint]
+# pycodestyle, pyflakes, isort, pyupgrade, bugbear, comprehensions, simplify.
+select = ["E", "F", "I", "UP", "B", "C4", "SIM"]

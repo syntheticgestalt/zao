@@ -1,0 +1,43 @@
+name: tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+env:
+  # The runners have no GPU, and the CUDA build of torch is several GB. An extra
+  # index would only be merged with PyPI, which also carries the CUDA wheel.
+  PIP_INDEX_URL: https://download.pytorch.org/whl/cpu
+  PIP_EXTRA_INDEX_URL: https://pypi.org/simple
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install ruff==0.16.10
+      - run: ruff check
+      - run: ruff format --check
+
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      - run: pip install -e ".[test]"
+      # The weights are not downloaded here; the tests that need them skip.
+      - run: pytest

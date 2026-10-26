@@ -1,0 +1,31 @@
+# Python
+__pycache__/
+*.py[cod]
+*.so
+.Python
+
+# Packaging and installs
+build/
+dist/
+*.egg-info/
+.venv/
+venv/
+
+# Local to a machine or a person, never shared
+.claude/
+.envrc
+.direnv/
+.env
+
+# Tooling
+.pytest_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+.mypy_cache/
+.ipynb_checkpoints/
+
+# What a run leaves behind
+*.log
+embeddings.npy
+model.joblib
