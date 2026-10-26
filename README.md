@@ -214,7 +214,7 @@ The scripts in [`examples/`](https://github.com/syntheticgestalt/zao/tree/main/e
 
 The two that take a CSV want a column of SMILES and a column to predict: a numeric one for `ZAORegressor`, a label column for `ZAOClassifier`.
 
-## License
+## Licence
 
 ZAO's code and its pretrained weights are released under the SyntheticGestalt Technical Verification and Academic Research License (SG-TVAR-1.0); the full text is in [LICENSE.md](https://github.com/syntheticgestalt/zao/blob/main/LICENSE.md). It covers the weights, this package and its documentation, together with the embeddings and predictions they produce and anything built from those.
 
@@ -223,9 +223,9 @@ Anyone may evaluate the model and decide from the results whether to take a comm
 - On your own proprietary structures and data as well as on public ones.
 - Benchmarking against your internal datasets, comparison with other models, measuring speed and hardware use, fitting it into your workflow, ablations and method development, reproducing published results, internal demonstrations.
 - On compounds chosen to assess the model, compared with experimental or simulation data you already hold.
-- Keeping the model, the embeddings and anything built from them inside your organisation.
+- Keeping the model, the embeddings and anything built from them inside your organization.
 - Publishing aggregated statistics, such as benchmark scores and error analyses, with commentary, as long as no individual output can be reconstructed from them.
 
-An academic institution may also use the model for scientific research on molecules, free of the limits on which compounds it is run on and on testing what the outputs predict (the third bullet). The rest, including keeping everything inside your organisation, applies to academic and non-academic users alike. Working with a non-academic party on Licensed Materials puts those activities back under the terms above.
+An academic institution may also use the model for scientific research on molecules, free of the limits on which compounds it is run on and on testing what the outputs predict (the third bullet). The rest, including keeping everything inside your organization, applies to academic and non-academic users alike. Working with a non-academic party on Licensed Materials puts those activities back under the terms above.
 
 Everything else needs a commercial licence: info@syntheticgestalt.com. Some uses are forbidden outright, among them designing chemical or biological agents intended to harm human or animal life, unlawful use, and falsified scientific or regulatory evidence.
