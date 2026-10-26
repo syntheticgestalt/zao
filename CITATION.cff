@@ -1,0 +1,19 @@
+cff-version: 1.2.0
+title: "ZAO: a molecular foundation model that reads each molecule as a set of conformers"
+message: "If you use ZAO in your work, please cite it as below."
+type: software
+authors:
+  - name: SyntheticGestalt KK
+    email: info@syntheticgestalt.com
+    city: Tokyo
+    country: JP
+version: 0.1.0
+date-released: "2026-10-26"
+license-url: "https://github.com/syntheticgestalt/zao/blob/main/LICENSE.md"
+repository-code: "https://github.com/syntheticgestalt/zao"
+url: "https://huggingface.co/syntheticgestalt/zao"
+keywords:
+  - cheminformatics
+  - molecular representation
+  - conformers
+  - drug discovery

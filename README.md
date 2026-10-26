@@ -1,5 +1,11 @@
 # ZAO
 
+[![PyPI](https://img.shields.io/pypi/v/zao)](https://pypi.org/project/zao/)
+[![Python](https://img.shields.io/pypi/pyversions/zao)](https://pypi.org/project/zao/)
+[![Tests](https://github.com/syntheticgestalt/zao/actions/workflows/tests.yml/badge.svg)](https://github.com/syntheticgestalt/zao/actions/workflows/tests.yml)
+[![Weights](https://img.shields.io/badge/weights-Hugging%20Face-yellow)](https://huggingface.co/syntheticgestalt/zao)
+[![Licence](https://img.shields.io/badge/licence-SG--TVAR--1.0-blue)](https://github.com/syntheticgestalt/zao/blob/main/LICENSE.md)
+
 ZAO is a molecular foundation model that represents each molecule as a set of conformers. It encodes 10 conformers per molecule by default in a single forward pass and returns one 2,048-dimensional embedding. It was pretrained on 11 billion conformers, and the released checkpoint has 223 million parameters.
 
 This repository provides:
